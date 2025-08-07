@@ -609,7 +609,7 @@ class FastF1MCPServer:
         include_testing = params.get("include_testing", False)
         
         try:
-            schedule = get_event_schedule(year, include_testing)
+            schedule = get_event_schedule(year, include_testing=include_testing)
             return {
                 "year": year,
                 "events": schedule.to_dict('records'),
@@ -889,7 +889,7 @@ class FastF1MCPServer:
                 driver_laps = session_obj.laps[session_obj.laps['Driver'] == driver]
             else:
                 # 获取整个赛季的数据
-                schedule = get_event_schedule(year)
+                schedule = get_event_schedule(year, include_testing=False)
                 all_laps = []
                 
                 for event in schedule:
